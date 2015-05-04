@@ -16,6 +16,38 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `Category`
+--
+
+DROP TABLE IF EXISTS `Category`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `Category` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `ClassName` enum('Category') CHARACTER SET utf8 DEFAULT 'Category',
+  `Created` datetime DEFAULT NULL,
+  `LastEdited` datetime DEFAULT NULL,
+  `Name` varchar(50) CHARACTER SET utf8 DEFAULT NULL,
+  `Description` mediumtext CHARACTER SET utf8,
+  `Order` int(11) NOT NULL DEFAULT '0',
+  `PhotoID` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`ID`),
+  KEY `ClassName` (`ClassName`),
+  KEY `PhotoID` (`PhotoID`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `Category`
+--
+
+LOCK TABLES `Category` WRITE;
+/*!40000 ALTER TABLE `Category` DISABLE KEYS */;
+INSERT INTO `Category` VALUES (1,'Category','2015-05-04 17:01:16','2015-05-04 17:24:56','Burgers','Wide range of burgers',1,6),(2,'Category','2015-05-04 17:37:37','2015-05-04 17:37:46','Starter',NULL,2,0);
+/*!40000 ALTER TABLE `Category` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `ErrorPage`
 --
 
@@ -115,7 +147,7 @@ CREATE TABLE `File` (
   KEY `ParentID` (`ParentID`),
   KEY `OwnerID` (`OwnerID`),
   KEY `ClassName` (`ClassName`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -124,7 +156,7 @@ CREATE TABLE `File` (
 
 LOCK TABLES `File` WRITE;
 /*!40000 ALTER TABLE `File` DISABLE KEYS */;
-INSERT INTO `File` VALUES (1,'Folder','2015-05-02 16:14:28','2015-05-02 16:14:28','Uploads','Uploads','assets/Uploads/',NULL,1,0,0),(2,'Image','2015-05-02 16:14:28','2015-05-02 16:14:28','SilverStripeLogo.png','SilverStripeLogo.png','assets/Uploads/SilverStripeLogo.png',NULL,1,1,0),(3,'File','2015-05-02 16:14:28','2015-05-02 16:14:28','error-404.html','error-404.html','assets/error-404.html',NULL,1,0,0),(4,'File','2015-05-02 16:14:28','2015-05-02 16:14:28','error-500.html','error-500.html','assets/error-500.html',NULL,1,0,0);
+INSERT INTO `File` VALUES (1,'Folder','2015-05-02 16:14:28','2015-05-02 16:14:28','Uploads','Uploads','assets/Uploads/',NULL,1,0,0),(2,'Image','2015-05-02 16:14:28','2015-05-02 16:14:28','SilverStripeLogo.png','SilverStripeLogo.png','assets/Uploads/SilverStripeLogo.png',NULL,1,1,0),(3,'File','2015-05-02 16:14:28','2015-05-02 16:14:28','error-404.html','error-404.html','assets/error-404.html',NULL,1,0,0),(4,'File','2015-05-02 16:14:28','2015-05-02 16:14:28','error-500.html','error-500.html','assets/error-500.html',NULL,1,0,0),(5,'Folder','2015-05-04 17:23:00','2015-05-04 17:23:00','category-photos','category-photos','assets/category-photos/',NULL,1,0,1),(6,'Image','2015-05-04 17:23:04','2015-05-04 17:23:04','burgers.jpg','burgers','assets/category-photos/burgers.jpg',NULL,1,5,1),(7,'Folder','2015-05-04 17:26:24','2015-05-04 17:26:24','product-photos','product-photos','assets/product-photos/',NULL,1,0,1),(8,'Image','2015-05-04 17:26:26','2015-05-04 17:26:26','bigmac.jpg','bigmac','assets/product-photos/bigmac.jpg',NULL,1,7,1);
 /*!40000 ALTER TABLE `File` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -290,7 +322,7 @@ CREATE TABLE `Member` (
 
 LOCK TABLES `Member` WRITE;
 /*!40000 ALTER TABLE `Member` DISABLE KEYS */;
-INSERT INTO `Member` VALUES (1,'Member','2015-05-02 16:14:28','2015-05-02 16:14:28','Default Admin',NULL,'admin',NULL,NULL,'$2y$10$d50938a998173ca1ca868uUeiQ0HkWO9KMfrZ21eiT.MMVa4.Gha2',NULL,0,NULL,NULL,NULL,'blowfish','10$d50938a998173ca1ca8682',NULL,NULL,'en_US',0,NULL,NULL);
+INSERT INTO `Member` VALUES (1,'Member','2015-05-02 16:14:28','2015-05-04 16:33:14','Default Admin',NULL,'admin','446ab65190c97e55d280b10430dda7dbb68fdc8e','2015-05-07 16:33:14','$2y$10$d50938a998173ca1ca868uUeiQ0HkWO9KMfrZ21eiT.MMVa4.Gha2',NULL,2,'2015-05-04 18:28:34',NULL,NULL,'blowfish','10$d50938a998173ca1ca8682',NULL,NULL,'en_US',0,NULL,NULL);
 /*!40000 ALTER TABLE `Member` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -414,6 +446,42 @@ CREATE TABLE `PermissionRoleCode` (
 LOCK TABLES `PermissionRoleCode` WRITE;
 /*!40000 ALTER TABLE `PermissionRoleCode` DISABLE KEYS */;
 /*!40000 ALTER TABLE `PermissionRoleCode` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `Product`
+--
+
+DROP TABLE IF EXISTS `Product`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `Product` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `ClassName` enum('Product') CHARACTER SET utf8 DEFAULT 'Product',
+  `Created` datetime DEFAULT NULL,
+  `LastEdited` datetime DEFAULT NULL,
+  `Name` varchar(50) CHARACTER SET utf8 DEFAULT NULL,
+  `Description` mediumtext CHARACTER SET utf8,
+  `Order` int(11) NOT NULL DEFAULT '0',
+  `CategoryID` int(11) NOT NULL DEFAULT '0',
+  `PhotoID` int(11) NOT NULL DEFAULT '0',
+  `Price` decimal(9,2) NOT NULL DEFAULT '0.00',
+  `IsActive` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`ID`),
+  KEY `ClassName` (`ClassName`),
+  KEY `CategoryID` (`CategoryID`),
+  KEY `PhotoID` (`PhotoID`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `Product`
+--
+
+LOCK TABLES `Product` WRITE;
+/*!40000 ALTER TABLE `Product` DISABLE KEYS */;
+INSERT INTO `Product` VALUES (1,'Product','2015-05-04 17:26:16','2015-05-04 18:25:14','Big Mac','Big mac Burger',1,1,8,5.99,1),(2,'Product','2015-05-04 17:38:17','2015-05-04 18:24:50','Chicken Pakora',NULL,2,2,0,15.99,1);
+/*!40000 ALTER TABLE `Product` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -619,7 +687,7 @@ DROP TABLE IF EXISTS `SiteTree`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `SiteTree` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
-  `ClassName` enum('SiteTree','Page','ErrorPage','RedirectorPage','VirtualPage') CHARACTER SET utf8 DEFAULT 'SiteTree',
+  `ClassName` enum('SiteTree','Page','MenuPage','ErrorPage','RedirectorPage','VirtualPage') CHARACTER SET utf8 DEFAULT 'SiteTree',
   `Created` datetime DEFAULT NULL,
   `LastEdited` datetime DEFAULT NULL,
   `URLSegment` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
@@ -642,7 +710,7 @@ CREATE TABLE `SiteTree` (
   KEY `ParentID` (`ParentID`),
   KEY `URLSegment` (`URLSegment`),
   KEY `ClassName` (`ClassName`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -651,7 +719,7 @@ CREATE TABLE `SiteTree` (
 
 LOCK TABLES `SiteTree` WRITE;
 /*!40000 ALTER TABLE `SiteTree` DISABLE KEYS */;
-INSERT INTO `SiteTree` VALUES (1,'Page','2015-05-02 16:14:27','2015-05-02 16:14:28','home','Home',NULL,'<p>Welcome to SilverStripe! This is the default homepage. You can edit this page by opening <a href=\"admin/\">the CMS</a>. You can now access the <a href=\"http://doc.silverstripe.org\">developer documentation</a>, or begin <a href=\"http://doc.silverstripe.org/doku.php?id=tutorials\">the tutorials.</a></p>',NULL,NULL,1,1,1,0,0,NULL,'Inherit','Inherit',1,0),(2,'Page','2015-05-02 16:14:27','2015-05-02 16:14:28','about-us','About Us',NULL,'<p>You can fill this page out with your own content, or delete it and create your own pages.<br /></p>',NULL,NULL,1,1,2,0,0,NULL,'Inherit','Inherit',1,0),(3,'Page','2015-05-02 16:14:28','2015-05-02 16:14:28','contact-us','Contact Us',NULL,'<p>You can fill this page out with your own content, or delete it and create your own pages.<br /></p>',NULL,NULL,1,1,3,0,0,NULL,'Inherit','Inherit',1,0),(4,'ErrorPage','2015-05-02 16:14:28','2015-05-02 16:14:28','page-not-found','Page not found',NULL,'<p>Sorry, it seems you were trying to access a page that doesn\'t exist.</p><p>Please check the spelling of the URL you were trying to access and try again.</p>',NULL,NULL,0,0,4,0,0,NULL,'Inherit','Inherit',1,0),(5,'ErrorPage','2015-05-02 16:14:28','2015-05-02 16:14:28','server-error','Server error',NULL,'<p>Sorry, there was a problem with handling your request.</p>',NULL,NULL,0,0,5,0,0,NULL,'Inherit','Inherit',1,0);
+INSERT INTO `SiteTree` VALUES (1,'Page','2015-05-02 16:14:27','2015-05-02 16:14:28','home','Home',NULL,'<p>Welcome to SilverStripe! This is the default homepage. You can edit this page by opening <a href=\"admin/\">the CMS</a>. You can now access the <a href=\"http://doc.silverstripe.org\">developer documentation</a>, or begin <a href=\"http://doc.silverstripe.org/doku.php?id=tutorials\">the tutorials.</a></p>',NULL,NULL,1,1,1,0,0,NULL,'Inherit','Inherit',1,0),(2,'Page','2015-05-02 16:14:27','2015-05-02 16:14:28','about-us','About Us',NULL,'<p>You can fill this page out with your own content, or delete it and create your own pages.<br /></p>',NULL,NULL,1,1,3,0,0,NULL,'Inherit','Inherit',1,0),(3,'Page','2015-05-02 16:14:28','2015-05-02 16:14:28','contact-us','Contact Us',NULL,'<p>You can fill this page out with your own content, or delete it and create your own pages.<br /></p>',NULL,NULL,1,1,4,0,0,NULL,'Inherit','Inherit',1,0),(4,'ErrorPage','2015-05-02 16:14:28','2015-05-02 16:14:28','page-not-found','Page not found',NULL,'<p>Sorry, it seems you were trying to access a page that doesn\'t exist.</p><p>Please check the spelling of the URL you were trying to access and try again.</p>',NULL,NULL,0,0,5,0,0,NULL,'Inherit','Inherit',1,0),(5,'ErrorPage','2015-05-02 16:14:28','2015-05-02 16:14:28','server-error','Server error',NULL,'<p>Sorry, there was a problem with handling your request.</p>',NULL,NULL,0,0,6,0,0,NULL,'Inherit','Inherit',1,0),(6,'MenuPage','2015-05-04 17:53:44','2015-05-04 18:17:37','menu','Menu',NULL,'<p>This is Restaurant Menu</p>',NULL,NULL,1,1,2,0,0,NULL,'Inherit','Inherit',7,0);
 /*!40000 ALTER TABLE `SiteTree` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -744,7 +812,7 @@ DROP TABLE IF EXISTS `SiteTree_Live`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `SiteTree_Live` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
-  `ClassName` enum('SiteTree','Page','ErrorPage','RedirectorPage','VirtualPage') CHARACTER SET utf8 DEFAULT 'SiteTree',
+  `ClassName` enum('SiteTree','Page','MenuPage','ErrorPage','RedirectorPage','VirtualPage') CHARACTER SET utf8 DEFAULT 'SiteTree',
   `Created` datetime DEFAULT NULL,
   `LastEdited` datetime DEFAULT NULL,
   `URLSegment` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
@@ -767,7 +835,7 @@ CREATE TABLE `SiteTree_Live` (
   KEY `ParentID` (`ParentID`),
   KEY `URLSegment` (`URLSegment`),
   KEY `ClassName` (`ClassName`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -776,7 +844,7 @@ CREATE TABLE `SiteTree_Live` (
 
 LOCK TABLES `SiteTree_Live` WRITE;
 /*!40000 ALTER TABLE `SiteTree_Live` DISABLE KEYS */;
-INSERT INTO `SiteTree_Live` VALUES (1,'Page','2015-05-02 16:14:27','2015-05-02 16:14:27','home','Home',NULL,'<p>Welcome to SilverStripe! This is the default homepage. You can edit this page by opening <a href=\"admin/\">the CMS</a>. You can now access the <a href=\"http://doc.silverstripe.org\">developer documentation</a>, or begin <a href=\"http://doc.silverstripe.org/doku.php?id=tutorials\">the tutorials.</a></p>',NULL,NULL,1,1,1,0,0,NULL,'Inherit','Inherit',1,0),(2,'Page','2015-05-02 16:14:27','2015-05-02 16:14:28','about-us','About Us',NULL,'<p>You can fill this page out with your own content, or delete it and create your own pages.<br /></p>',NULL,NULL,1,1,2,0,0,NULL,'Inherit','Inherit',1,0),(3,'Page','2015-05-02 16:14:28','2015-05-02 16:14:28','contact-us','Contact Us',NULL,'<p>You can fill this page out with your own content, or delete it and create your own pages.<br /></p>',NULL,NULL,1,1,3,0,0,NULL,'Inherit','Inherit',1,0),(4,'ErrorPage','2015-05-02 16:14:28','2015-05-02 16:14:34','page-not-found','Page not found',NULL,'<p>Sorry, it seems you were trying to access a page that doesn\'t exist.</p><p>Please check the spelling of the URL you were trying to access and try again.</p>',NULL,NULL,0,0,4,0,0,NULL,'Inherit','Inherit',1,0),(5,'ErrorPage','2015-05-02 16:14:28','2015-05-02 16:14:28','server-error','Server error',NULL,'<p>Sorry, there was a problem with handling your request.</p>',NULL,NULL,0,0,5,0,0,NULL,'Inherit','Inherit',1,0);
+INSERT INTO `SiteTree_Live` VALUES (1,'Page','2015-05-02 16:14:27','2015-05-02 16:14:27','home','Home',NULL,'<p>Welcome to SilverStripe! This is the default homepage. You can edit this page by opening <a href=\"admin/\">the CMS</a>. You can now access the <a href=\"http://doc.silverstripe.org\">developer documentation</a>, or begin <a href=\"http://doc.silverstripe.org/doku.php?id=tutorials\">the tutorials.</a></p>',NULL,NULL,1,1,1,0,0,NULL,'Inherit','Inherit',1,0),(2,'Page','2015-05-02 16:14:27','2015-05-02 16:14:28','about-us','About Us',NULL,'<p>You can fill this page out with your own content, or delete it and create your own pages.<br /></p>',NULL,NULL,1,1,3,0,0,NULL,'Inherit','Inherit',1,0),(3,'Page','2015-05-02 16:14:28','2015-05-02 16:14:28','contact-us','Contact Us',NULL,'<p>You can fill this page out with your own content, or delete it and create your own pages.<br /></p>',NULL,NULL,1,1,4,0,0,NULL,'Inherit','Inherit',1,0),(4,'ErrorPage','2015-05-02 16:14:28','2015-05-02 16:14:34','page-not-found','Page not found',NULL,'<p>Sorry, it seems you were trying to access a page that doesn\'t exist.</p><p>Please check the spelling of the URL you were trying to access and try again.</p>',NULL,NULL,0,0,5,0,0,NULL,'Inherit','Inherit',1,0),(5,'ErrorPage','2015-05-02 16:14:28','2015-05-02 16:14:28','server-error','Server error',NULL,'<p>Sorry, there was a problem with handling your request.</p>',NULL,NULL,0,0,6,0,0,NULL,'Inherit','Inherit',1,0),(6,'MenuPage','2015-05-04 17:53:44','2015-05-04 18:17:37','menu','Menu',NULL,'<p>This is Restaurant Menu</p>',NULL,NULL,1,1,2,0,0,NULL,'Inherit','Inherit',7,0);
 /*!40000 ALTER TABLE `SiteTree_Live` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -820,7 +888,7 @@ CREATE TABLE `SiteTree_versions` (
   `WasPublished` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `AuthorID` int(11) NOT NULL DEFAULT '0',
   `PublisherID` int(11) NOT NULL DEFAULT '0',
-  `ClassName` enum('SiteTree','Page','ErrorPage','RedirectorPage','VirtualPage') CHARACTER SET utf8 DEFAULT 'SiteTree',
+  `ClassName` enum('SiteTree','Page','MenuPage','ErrorPage','RedirectorPage','VirtualPage') CHARACTER SET utf8 DEFAULT 'SiteTree',
   `Created` datetime DEFAULT NULL,
   `LastEdited` datetime DEFAULT NULL,
   `URLSegment` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
@@ -847,7 +915,7 @@ CREATE TABLE `SiteTree_versions` (
   KEY `ParentID` (`ParentID`),
   KEY `URLSegment` (`URLSegment`),
   KEY `ClassName` (`ClassName`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -856,7 +924,7 @@ CREATE TABLE `SiteTree_versions` (
 
 LOCK TABLES `SiteTree_versions` WRITE;
 /*!40000 ALTER TABLE `SiteTree_versions` DISABLE KEYS */;
-INSERT INTO `SiteTree_versions` VALUES (1,1,1,1,0,0,'Page','2015-05-02 16:14:27','2015-05-02 16:14:27','home','Home',NULL,'<p>Welcome to SilverStripe! This is the default homepage. You can edit this page by opening <a href=\"admin/\">the CMS</a>. You can now access the <a href=\"http://doc.silverstripe.org\">developer documentation</a>, or begin <a href=\"http://doc.silverstripe.org/doku.php?id=tutorials\">the tutorials.</a></p>',NULL,NULL,1,1,1,0,0,NULL,'Inherit','Inherit',0),(2,2,1,1,0,0,'Page','2015-05-02 16:14:27','2015-05-02 16:14:27','about-us','About Us',NULL,'<p>You can fill this page out with your own content, or delete it and create your own pages.<br /></p>',NULL,NULL,1,1,2,0,0,NULL,'Inherit','Inherit',0),(3,3,1,1,0,0,'Page','2015-05-02 16:14:28','2015-05-02 16:14:28','contact-us','Contact Us',NULL,'<p>You can fill this page out with your own content, or delete it and create your own pages.<br /></p>',NULL,NULL,1,1,3,0,0,NULL,'Inherit','Inherit',0),(4,4,1,1,0,0,'ErrorPage','2015-05-02 16:14:28','2015-05-02 16:14:28','page-not-found','Page not found',NULL,'<p>Sorry, it seems you were trying to access a page that doesn\'t exist.</p><p>Please check the spelling of the URL you were trying to access and try again.</p>',NULL,NULL,0,0,4,0,0,NULL,'Inherit','Inherit',0),(5,5,1,1,0,0,'ErrorPage','2015-05-02 16:14:28','2015-05-02 16:14:28','server-error','Server error',NULL,'<p>Sorry, there was a problem with handling your request.</p>',NULL,NULL,0,0,5,0,0,NULL,'Inherit','Inherit',0);
+INSERT INTO `SiteTree_versions` VALUES (1,1,1,1,0,0,'Page','2015-05-02 16:14:27','2015-05-02 16:14:27','home','Home',NULL,'<p>Welcome to SilverStripe! This is the default homepage. You can edit this page by opening <a href=\"admin/\">the CMS</a>. You can now access the <a href=\"http://doc.silverstripe.org\">developer documentation</a>, or begin <a href=\"http://doc.silverstripe.org/doku.php?id=tutorials\">the tutorials.</a></p>',NULL,NULL,1,1,1,0,0,NULL,'Inherit','Inherit',0),(2,2,1,1,0,0,'Page','2015-05-02 16:14:27','2015-05-02 16:14:27','about-us','About Us',NULL,'<p>You can fill this page out with your own content, or delete it and create your own pages.<br /></p>',NULL,NULL,1,1,2,0,0,NULL,'Inherit','Inherit',0),(3,3,1,1,0,0,'Page','2015-05-02 16:14:28','2015-05-02 16:14:28','contact-us','Contact Us',NULL,'<p>You can fill this page out with your own content, or delete it and create your own pages.<br /></p>',NULL,NULL,1,1,3,0,0,NULL,'Inherit','Inherit',0),(4,4,1,1,0,0,'ErrorPage','2015-05-02 16:14:28','2015-05-02 16:14:28','page-not-found','Page not found',NULL,'<p>Sorry, it seems you were trying to access a page that doesn\'t exist.</p><p>Please check the spelling of the URL you were trying to access and try again.</p>',NULL,NULL,0,0,4,0,0,NULL,'Inherit','Inherit',0),(5,5,1,1,0,0,'ErrorPage','2015-05-02 16:14:28','2015-05-02 16:14:28','server-error','Server error',NULL,'<p>Sorry, there was a problem with handling your request.</p>',NULL,NULL,0,0,5,0,0,NULL,'Inherit','Inherit',0),(6,6,1,0,1,0,'Page','2015-05-04 17:53:44','2015-05-04 17:53:44','new-page','New Page',NULL,NULL,NULL,NULL,1,1,6,0,0,NULL,'Inherit','Inherit',0),(7,6,2,1,1,1,'Page','2015-05-04 17:53:44','2015-05-04 17:54:33','menu','Menu',NULL,'<h2>Restaurant Menu</h2>',NULL,NULL,1,1,6,0,0,NULL,'Inherit','Inherit',0),(8,6,3,0,1,0,'Page','2015-05-04 17:53:44','2015-05-04 17:55:01','menu','Menu',NULL,'<h2>Restaurant Menu</h2>',NULL,NULL,1,1,2,0,0,NULL,'Inherit','Inherit',0),(9,6,4,1,1,1,'Page','2015-05-04 17:53:44','2015-05-04 17:55:55','menu','Menu','Restaurant Menu','<p>This is Restaurant Menu</p>',NULL,NULL,1,1,2,0,0,NULL,'Inherit','Inherit',0),(10,6,5,1,1,1,'Page','2015-05-04 17:53:44','2015-05-04 17:56:29','restaurant-menu','Restaurant Menu','Menu','<p>This is Restaurant Menu</p>',NULL,NULL,1,1,2,0,0,NULL,'Inherit','Inherit',0),(11,6,6,1,1,1,'Page','2015-05-04 17:53:44','2015-05-04 18:14:45','menu','Menu',NULL,'<p>This is Restaurant Menu</p>',NULL,NULL,1,1,2,0,0,NULL,'Inherit','Inherit',0),(12,6,7,1,1,1,'MenuPage','2015-05-04 17:53:44','2015-05-04 18:17:37','menu','Menu',NULL,'<p>This is Restaurant Menu</p>',NULL,NULL,1,1,2,0,0,NULL,'Inherit','Inherit',0);
 /*!40000 ALTER TABLE `SiteTree_versions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -949,4 +1017,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-05-02 16:37:24
+-- Dump completed on 2015-05-04 18:31:36
